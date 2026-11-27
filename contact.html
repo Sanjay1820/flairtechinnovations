@@ -223,6 +223,58 @@
     </div>
   </section>
 
+  <!-- Interactive Terminal Locations Map -->
+  <section class="ft-section bg-surface pb-0">
+    <div class="container pb-4">
+      <div class="row align-items-end g-3">
+        <div class="col-lg-6">
+          <span class="brand-kicker mb-2"><i class="bi bi-geo-alt-fill"></i> Hub Locations Map</span>
+          <h2 class="h2 mb-1">Find Our Canadian &amp; U.S. Terminals</h2>
+          <p class="small text-muted-brand mb-0">Select a hub below to preview its location on the interactive map or open turn-by-turn directions.</p>
+        </div>
+        <div class="col-lg-6">
+          <div class="d-flex flex-wrap gap-2 justify-content-lg-end">
+            <button type="button" class="ft-filter-btn active" data-map-query="388+Old+Huron+Road,+Kitchener,+ON+N2R+0J6,+Canada" data-map-label="Kitchener, ON Hub" data-map-addr="388 Old Huron Road, Kitchener, ON N2R 0J6">
+              <i class="bi bi-geo-alt me-1"></i> Kitchener, ON
+            </button>
+            <button type="button" class="ft-filter-btn" data-map-query="Unit+E,+800+3rd+Avenue,+Hope,+BC+V0X+1L0,+Canada" data-map-label="Hope, BC Hub" data-map-addr="Unit E, 800 3rd Avenue, Hope, BC V0X 1L0">
+              <i class="bi bi-geo-alt me-1"></i> Hope, BC
+            </button>
+            <button type="button" class="ft-filter-btn" data-map-query="Toronto,+ON,+Canada" data-map-label="Toronto, ON Hub" data-map-addr="Toronto, ON, Canada">
+              <i class="bi bi-geo-alt me-1"></i> Toronto, ON
+            </button>
+            <button type="button" class="ft-filter-btn" data-map-query="Dalton,+GA,+USA" data-map-label="Dalton, GA Hub (USA)" data-map-addr="Dalton, Georgia, United States">
+              <i class="bi bi-geo-alt me-1"></i> Dalton, GA (US)
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="position-relative w-100 border-top border-success-subtle" style="height: 430px;">
+      <!-- Floating Hub Info Card -->
+      <div class="position-absolute top-0 start-0 m-3 m-md-4 bg-white rounded-4 p-3 shadow-lg border border-success-subtle d-none d-sm-block" style="z-index: 3; max-width: 290px;">
+        <div id="mapActiveLabel" class="fw-bold text-forest mb-1">Kitchener, ON Hub</div>
+        <div id="mapActiveAddr" class="small text-muted-brand mb-2">388 Old Huron Road, Kitchener, ON N2R 0J6</div>
+        <a id="mapOpenExternal" href="https://maps.google.com/?q=388+Old+Huron+Road,+Kitchener,+ON+N2R+0J6,+Canada" target="_blank" rel="noopener" class="btn btn-sm btn-ft-primary">
+          <i class="bi bi-box-arrow-up-right"></i> Open in Google Maps
+        </a>
+      </div>
+
+      <iframe
+        id="contactLocationMap"
+        title="Flairtech Innovations Terminal Map"
+        src="https://maps.google.com/maps?q=388+Old+Huron+Road,+Kitchener,+ON+N2R+0J6,+Canada&t=&z=14&ie=UTF8&iwloc=&output=embed"
+        width="100%"
+        height="430"
+        style="border:0; display:block;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </section>
+
     <!-- Footer -->
   <footer class="ft-footer">
     <div class="container">

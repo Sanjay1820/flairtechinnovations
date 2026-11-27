@@ -518,4 +518,28 @@ document.addEventListener('DOMContentLoaded', () => {
     startAuto();
   };
   initTestimonialDeck();
+
+  // 14. Contact Page Interactive Google Map Hub Switcher
+  const initContactMapSwitcher = () => {
+    const mapFrame = document.getElementById('contactLocationMap');
+    const mapBtns = document.querySelectorAll('[data-map-query]');
+    if (!mapFrame || !mapBtns.length) return;
+
+    const labelEl = document.getElementById('mapActiveLabel');
+    const addrEl = document.getElementById('mapActiveAddr');
+    const externalLink = document.getElementById('mapOpenExternal');
+
+    mapBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        mapBtns.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        const q = btn.dataset.mapQuery;
+        mapFrame.src = `https://maps.google.com/maps?q=${q}&t=&z=14&ie=UTF8&iwloc=&output=embed`;
+        if (labelEl && btn.dataset.mapLabel) labelEl.textContent = btn.dataset.mapLabel;
+        if (addrEl && btn.dataset.mapAddr) addrEl.textContent = btn.dataset.mapAddr;
+        if (externalLink) externalLink.href = `https://maps.google.com/?q=${q}`;
+      });
+    });
+  };
+  initContactMapSwitcher();
 });
