@@ -1251,3 +1251,81 @@ a:hover {
     font-size: 0.84rem;
   }
 }
+
+/* ==========================================================================
+   Floating Back-to-Top Button with Live Scroll Progress Ring
+   ========================================================================== */
+.ft-back-to-top {
+  position: fixed;
+  left: 24px;
+  bottom: 24px;
+  z-index: 1075;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  background: var(--ft-white);
+  color: var(--ft-forest);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 12px 28px rgba(4, 36, 17, 0.22);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px) scale(0.9);
+  transition: var(--ft-transition);
+  padding: 0;
+}
+
+.ft-back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.ft-back-to-top:hover {
+  background: var(--ft-forest-dark);
+  color: #ffffff;
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 16px 34px rgba(0, 60, 24, 0.34);
+}
+
+.ft-back-to-top svg.progress-ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+  pointer-events: none;
+}
+
+.ft-back-to-top svg.progress-ring circle.ring-track {
+  fill: none;
+  stroke: var(--ft-border);
+  stroke-width: 3;
+}
+
+.ft-back-to-top svg.progress-ring circle.ring-fill {
+  fill: none;
+  stroke: var(--ft-emerald);
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.1s linear;
+}
+
+.ft-back-to-top i {
+  position: relative;
+  z-index: 2;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+@media (max-width: 575.98px) {
+  .ft-back-to-top {
+    left: 16px;
+    bottom: 16px;
+    width: 46px;
+    height: 46px;
+  }
+}

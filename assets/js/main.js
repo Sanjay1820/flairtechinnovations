@@ -350,4 +350,45 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
   initFloatingContactFab();
+
+  // 12. Floating Back-to-Top Button with Live Scroll Progress Ring across all pages
+  const initBackToTop = () => {
+    if (document.getElementById('ftBackToTop')) return;
+    const btn = document.createElement('button');
+    btn.id = 'ftBackToTop';
+    btn.type = 'button';
+    btn.className = 'ft-back-to-top';
+    btn.setAttribute('aria-label', 'Back to top');
+    btn.title = 'Back to Top';
+
+    const radius = 23;
+    const circumference = 2 * Math.PI * radius;
+    btn.innerHTML = `
+      <svg class="progress-ring" viewBox="0 0 52 52" aria-hidden="true">
+        <circle class="ring-track" cx="26" cy="26" r="${radius}"></circle>
+        <circle class="ring-fill" cx="26" cy="26" r="${radius}" stroke-dasharray="${circumference}" stroke-dashoffset="${circumference}"></circle>
+      </svg>
+      <i class="bi bi-arrow-up"></i>
+    `;
+    document.body.appendChild(btn);
+
+    const ringFill = btn.querySelector('.ring-fill');
+    const updateScrollProgress = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? Math.min(scrollTop / docHeight, 1) : 0;
+      if (ringFill) {
+        ringFill.style.strokeDashoffset = circumference * (1 - progress);
+      }
+      btn.classList.toggle('show', scrollTop > 280);
+    };
+
+    window.addEventListener('scroll', updateScrollProgress, { passive: true });
+    updateScrollProgress();
+
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  };
+  initBackToTop();
 });
