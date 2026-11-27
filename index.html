@@ -624,6 +624,116 @@
     </div>
   </section>
 
+  <!-- Inline Request A Quote & Inquiry Section -->
+  <section id="request-quote" class="ft-section bg-surface">
+    <div class="container">
+      <div class="row g-5 align-items-center">
+        <div class="col-lg-5 reveal">
+          <span class="brand-kicker mb-3"><i class="bi bi-envelope-paper-fill"></i> Fast Freight Quotation</span>
+          <h2 class="display-6 mb-3">Request Your Custom Quote</h2>
+          <p class="text-muted-brand mb-4">
+            Submit your shipment or industrial service inquiry below. Your request goes directly to our dispatch team at <a href="mailto:info@flairtechinnovations.com" class="fw-semibold text-forest">info@flairtechinnovations.com</a>.
+          </p>
+          <div class="d-grid gap-3">
+            <div class="d-flex align-items-center gap-3 p-3 rounded-4 bg-white border">
+              <div class="ft-icon-box"><i class="bi bi-telephone-fill"></i></div>
+              <div>
+                <div class="small text-muted-brand fw-semibold">24/7 Dispatch Support</div>
+                <a href="tel:+12267570705" class="fw-bold text-forest">+1 226 757 0705</a>
+              </div>
+            </div>
+            <div class="d-flex align-items-center gap-3 p-3 rounded-4 bg-white border">
+              <div class="ft-icon-box"><i class="bi bi-envelope-check-fill"></i></div>
+              <div>
+                <div class="small text-muted-brand fw-semibold">Direct Inquiry Email</div>
+                <a href="mailto:info@flairtechinnovations.com" class="fw-bold text-forest">info@flairtechinnovations.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-7 reveal">
+          <div class="ft-form-card">
+            <form id="inlineQuoteForm" class="ft-interactive-form needs-validation" novalidate data-feedback="inlineQuoteFeedback" data-subject="New Homepage Quotation Request">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold small">Full Name *</label>
+                  <input type="text" name="full_name" class="form-control" required placeholder="John Doe" />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold small">Company Name</label>
+                  <input type="text" name="company" class="form-control" placeholder="Your Company Ltd." />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold small">Email Address *</label>
+                  <input type="email" name="email" class="form-control" required placeholder="name@company.com" />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold small">Phone Number *</label>
+                  <input type="tel" name="phone" class="form-control" required placeholder="+1 (___) ___-____" />
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label fw-semibold small">Service Required *</label>
+                  <select name="service" class="form-select" required>
+                    <option value="Truckload (FTL)">Truckload (FTL)</option>
+                    <option value="Less-Than-Truckload (LTL)">Less-Than-Truckload (LTL)</option>
+                    <option value="Warehousing & Cross-Dock">Warehousing &amp; Cross-Dock</option>
+                    <option value="Expedited / Same-Day">Expedited / Same-Day</option>
+                    <option value="Inspection / Fabrication">Inspection / Fabrication</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label fw-semibold small">Origin City *</label>
+                  <input type="text" name="origin" class="form-control" required placeholder="e.g., Kitchener, ON" />
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label fw-semibold small">Destination City *</label>
+                  <input type="text" name="destination" class="form-control" required placeholder="e.g., Vancouver, BC" />
+                </div>
+                <div class="col-12">
+                  <label class="form-label fw-semibold small">Shipment / Project Details *</label>
+                  <textarea name="details" class="form-control" rows="3" required placeholder="Share pallet count, weight, equipment needs, or target pickup date..."></textarea>
+                </div>
+                <div class="col-12 ft-form-error alert alert-warning d-none small mb-0 rounded-3">
+                  We could not reach the mail server automatically. Please click below to send directly via your email app:
+                  <a href="mailto:info@flairtechinnovations.com" class="ft-mailto-fallback fw-bold ms-1">Open Email App →</a>
+                </div>
+                <div class="col-12 d-grid mt-2">
+                  <button type="submit" class="btn btn-ft-primary btn-lg justify-content-center">
+                    Submit Quote Request <i class="bi bi-send-check"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+
+            <!-- Thank You State -->
+            <div id="inlineQuoteFeedback" class="d-none text-center py-4 px-2">
+              <div class="mx-auto mb-3 d-inline-flex align-items-center justify-content-center rounded-circle bg-mint-tint text-emerald-brand" style="width:74px;height:74px;font-size:2.3rem;border:2px solid var(--ft-emerald);">
+                <i class="bi bi-check-lg"></i>
+              </div>
+              <h3 class="h3 text-forest mb-2">Thank You! Your Quote Request Is Sent.</h3>
+              <p class="text-muted-brand mb-3">
+                Your inquiry has been delivered to <strong class="sent-to-email text-forest">info@flairtechinnovations.com</strong>. Our dispatch team will review your lane details and get back to you promptly.
+              </p>
+              <div class="d-inline-block px-3 py-2 rounded-3 bg-surface border mb-4">
+                <span class="small text-muted-brand">Reference ID:</span>
+                <span class="font-mono fw-bold text-forest ref-code ms-1"></span>
+              </div>
+              <div class="d-flex flex-wrap justify-content-center gap-2">
+                <button type="button" class="btn btn-ft-outline btn-sm ft-reset-form-btn">
+                  <i class="bi bi-plus-circle"></i> Submit Another Quote
+                </button>
+                <a href="tel:+12267570705" class="btn btn-ft-forest btn-sm">
+                  <i class="bi bi-telephone"></i> Call +1 226 757 0705
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA Banner -->
   <section class="ft-section-sm pb-5">
     <div class="container">
@@ -728,27 +838,27 @@
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body p-4">
-          <form class="ft-interactive-form needs-validation" novalidate data-feedback="modalQuoteFeedback">
+          <form class="ft-interactive-form needs-validation" novalidate data-feedback="modalQuoteFeedback" data-subject="New Popup Quotation Request">
             <div class="row g-3">
               <div class="col-md-6">
                 <label class="form-label fw-semibold small">Full Name *</label>
-                <input type="text" class="form-control" required placeholder="John Doe" />
+                <input type="text" name="full_name" class="form-control" required placeholder="John Doe" />
               </div>
               <div class="col-md-6">
                 <label class="form-label fw-semibold small">Company Name</label>
-                <input type="text" class="form-control" placeholder="Your Company Ltd." />
+                <input type="text" name="company" class="form-control" placeholder="Your Company Ltd." />
               </div>
               <div class="col-md-6">
                 <label class="form-label fw-semibold small">Email Address *</label>
-                <input type="email" class="form-control" required placeholder="name@company.com" />
+                <input type="email" name="email" class="form-control" required placeholder="name@company.com" />
               </div>
               <div class="col-md-6">
                 <label class="form-label fw-semibold small">Phone Number *</label>
-                <input type="tel" class="form-control" required placeholder="+1 (___) ___-____" />
+                <input type="tel" name="phone" class="form-control" required placeholder="+1 (___) ___-____" />
               </div>
               <div class="col-md-4">
                 <label class="form-label fw-semibold small">Service Required *</label>
-                <select id="modalServiceType" class="form-select" required>
+                <select id="modalServiceType" name="service" class="form-select" required>
                   <option value="FTL">Truckload (FTL)</option>
                   <option value="LTL">Less-Than-Truckload (LTL)</option>
                   <option value="Warehousing">Warehousing &amp; Cross-Dock</option>
@@ -758,15 +868,19 @@
               </div>
               <div class="col-md-4">
                 <label class="form-label fw-semibold small">Origin City / Postal *</label>
-                <input type="text" class="form-control" required placeholder="e.g., Kitchener, ON" />
+                <input type="text" name="origin" class="form-control" required placeholder="e.g., Kitchener, ON" />
               </div>
               <div class="col-md-4">
                 <label class="form-label fw-semibold small">Destination City / Postal *</label>
-                <input type="text" class="form-control" required placeholder="e.g., Vancouver, BC" />
+                <input type="text" name="destination" class="form-control" required placeholder="e.g., Vancouver, BC" />
               </div>
               <div class="col-12">
                 <label class="form-label fw-semibold small">Shipment Details (Weight, Pallets, Special Equipment)</label>
-                <textarea class="form-control" rows="3" placeholder="Tell us about freight dimensions, tailgate needs, or target pickup date..."></textarea>
+                <textarea name="details" class="form-control" rows="3" placeholder="Tell us about freight dimensions, tailgate needs, or target pickup date..."></textarea>
+              </div>
+              <div class="col-12 ft-form-error alert alert-warning d-none small mb-0 rounded-3">
+                Could not reach the mail server automatically. Click to send via your email app:
+                <a href="mailto:info@flairtechinnovations.com" class="ft-mailto-fallback fw-bold ms-1">Open Email App →</a>
               </div>
               <div class="col-12 d-grid mt-2">
                 <button type="submit" class="btn btn-ft-primary btn-lg justify-content-center">
@@ -775,9 +889,18 @@
               </div>
             </div>
           </form>
-          <div id="modalQuoteFeedback" class="alert alert-success mt-3 mb-0 d-none rounded-3">
-            <strong><i class="bi bi-check-circle-fill me-1"></i> Quote Request Received!</strong>
-            Reference <span class="font-mono fw-bold ref-code"></span>. Our dispatch team will respond shortly, or call <a href="tel:+12267570705" class="fw-bold">+1 226 757 0705</a> for immediate dispatch.
+          <div id="modalQuoteFeedback" class="d-none text-center py-4 px-2">
+            <div class="mx-auto mb-3 d-inline-flex align-items-center justify-content-center rounded-circle bg-mint-tint text-emerald-brand" style="width:72px;height:72px;font-size:2.2rem;border:2px solid var(--ft-emerald);">
+              <i class="bi bi-check-lg"></i>
+            </div>
+            <h4 class="text-forest mb-2">Thank You! Quote Request Sent</h4>
+            <p class="small text-muted-brand mb-3">
+              Your quotation inquiry has been sent to <strong class="sent-to-email text-forest">info@flairtechinnovations.com</strong>. Reference: <span class="font-mono fw-bold text-forest ref-code"></span>.
+            </p>
+            <div class="d-flex flex-wrap justify-content-center gap-2">
+              <button type="button" class="btn btn-ft-outline btn-sm ft-reset-form-btn">Send Another Quote</button>
+              <button type="button" class="btn btn-ft-forest btn-sm" data-bs-dismiss="modal">Close</button>
+            </div>
           </div>
         </div>
       </div>

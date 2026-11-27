@@ -116,23 +116,23 @@
           <div class="ft-form-card">
             <h3 class="h4 mb-1">Join Our Talent Network</h3>
             <p class="small text-muted-brand mb-4">Submit your details below and our hiring team will reach out when a matching role opens in your hub.</p>
-            <form class="ft-interactive-form needs-validation" novalidate data-feedback="careerFeedback">
+            <form class="ft-interactive-form needs-validation" novalidate data-feedback="careerFeedback" data-subject="New Career Profile Submission">
               <div class="row g-3">
                 <div class="col-md-6">
                   <label class="form-label small fw-semibold">Full Name *</label>
-                  <input type="text" class="form-control" required placeholder="Your full name" />
+                  <input type="text" name="full_name" class="form-control" required placeholder="Your full name" />
                 </div>
                 <div class="col-md-6">
                   <label class="form-label small fw-semibold">Email Address *</label>
-                  <input type="email" class="form-control" required placeholder="you@email.com" />
+                  <input type="email" name="email" class="form-control" required placeholder="you@email.com" />
                 </div>
                 <div class="col-md-6">
                   <label class="form-label small fw-semibold">Phone Number *</label>
-                  <input type="tel" class="form-control" required placeholder="+1 (___) ___-____" />
+                  <input type="tel" name="phone" class="form-control" required placeholder="+1 (___) ___-____" />
                 </div>
                 <div class="col-md-6">
                   <label class="form-label small fw-semibold">Preferred Hub / Region</label>
-                  <select class="form-select">
+                  <select name="preferred_hub" class="form-select">
                     <option>Kitchener / GTA, ON</option>
                     <option>Hope / Vancouver, BC</option>
                     <option>Montreal / Quebec</option>
@@ -142,7 +142,7 @@
                 </div>
                 <div class="col-12">
                   <label class="form-label small fw-semibold">Area of Expertise</label>
-                  <select class="form-select">
+                  <select name="expertise" class="form-select">
                     <option>Commercial Driver (AZ / Class 1)</option>
                     <option>Dispatch &amp; Fleet Operations</option>
                     <option>Warehouse / Cross-Dock Associate</option>
@@ -152,16 +152,26 @@
                 </div>
                 <div class="col-12">
                   <label class="form-label small fw-semibold">Experience Summary</label>
-                  <textarea class="form-control" rows="3" placeholder="Briefly share your certifications, years of experience, or availability..."></textarea>
+                  <textarea name="experience" class="form-control" rows="3" placeholder="Briefly share your certifications, years of experience, or availability..."></textarea>
+                </div>
+                <div class="col-12 ft-form-error alert alert-warning d-none small mb-0 rounded-3">
+                  Could not reach the mail server automatically. Click to send via your email app:
+                  <a href="mailto:info@flairtechinnovations.com" class="ft-mailto-fallback fw-bold ms-1">Open Email App →</a>
                 </div>
                 <div class="col-12 d-grid">
                   <button type="submit" class="btn btn-ft-primary btn-lg justify-content-center">Submit Career Profile <i class="bi bi-send"></i></button>
                 </div>
               </div>
             </form>
-            <div id="careerFeedback" class="alert alert-success mt-3 mb-0 d-none rounded-3">
-              <strong><i class="bi bi-check-circle-fill me-1"></i> Application Profile Submitted!</strong>
-              Reference <span class="font-mono fw-bold ref-code"></span>. You can also send your resume directly to <a href="mailto:info@flairtechinnovations.com" class="fw-bold">info@flairtechinnovations.com</a>.
+            <div id="careerFeedback" class="d-none text-center py-4 px-2">
+              <div class="mx-auto mb-3 d-inline-flex align-items-center justify-content-center rounded-circle bg-mint-tint text-emerald-brand" style="width:72px;height:72px;font-size:2.2rem;border:2px solid var(--ft-emerald);">
+                <i class="bi bi-check-lg"></i>
+              </div>
+              <h4 class="text-forest mb-2">Thank You! Career Profile Sent.</h4>
+              <p class="small text-muted-brand mb-3">
+                Your profile has been sent to <strong class="sent-to-email text-forest">info@flairtechinnovations.com</strong>. Reference: <span class="font-mono fw-bold text-forest ref-code"></span>.
+              </p>
+              <button type="button" class="btn btn-ft-outline btn-sm ft-reset-form-btn">Submit Another Profile</button>
             </div>
           </div>
         </div>

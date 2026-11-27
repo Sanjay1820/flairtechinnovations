@@ -129,23 +129,105 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 7. Interactive Form Handling (Quote Modal, Contact Form, Career Form)
+  // 7. Interactive Form Handling -> Sends directly to info@flairtechinnovations.com via FormSubmit AJAX
+  const TARGET_EMAIL = 'info@flairtechinnovations.com';
+  const FORMSUBMIT_ENDPOINT = `https://formsubmit.co/ajax/${TARGET_EMAIL}`;
+
   const handleQuoteForm = (form, feedbackEl) => {
-    form.addEventListener('submit', (e) => {
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalBtnHtml = submitBtn ? submitBtn.innerHTML : '';
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (!form.checkValidity()) {
         form.classList.add('was-validated');
         return;
       }
+
       const refId = 'FTI-' + Math.floor(100000 + Math.random() * 900000);
-      if (feedbackEl) {
-        feedbackEl.classList.remove('d-none');
-        const refSpan = feedbackEl.querySelector('.ref-code');
-        if (refSpan) refSpan.textContent = refId;
+      const formData = new FormData(form);
+      const payload = {
+        reference_id: refId,
+        _subject: `${form.dataset.subject || 'New Website Inquiry'} [${refId}] — Flairtech Innovations`,
+        _template: 'table',
+        _captcha: 'false'
+      };
+
+      formData.forEach((value, key) => {
+        if (value !== '') {
+          payload[key] = value;
+        }
+      });
+
+      if (payload.email) {
+        payload._replyto = payload.email;
       }
-      form.reset();
-      form.classList.remove('was-validated');
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Sending Inquiry...';
+      }
+
+      const errBox = form.querySelector('.ft-form-error');
+      if (errBox) errBox.classList.add('d-none');
+
+      try {
+        const response = await fetch(FORMSUBMIT_ENDPOINT, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || result.success === 'false') {
+          throw new Error(result.message || 'Unable to send right now.');
+        }
+
+        form.reset();
+        form.classList.remove('was-validated');
+        form.classList.add('d-none');
+
+        if (feedbackEl) {
+          feedbackEl.classList.remove('d-none');
+          const refSpan = feedbackEl.querySelector('.ref-code');
+          if (refSpan) refSpan.textContent = refId;
+          const sentEmailSpan = feedbackEl.querySelector('.sent-to-email');
+          if (sentEmailSpan) sentEmailSpan.textContent = TARGET_EMAIL;
+          feedbackEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      } catch (err) {
+        if (errBox) {
+          const mailSubject = encodeURIComponent(`${payload._subject}`);
+          const lines = Object.entries(payload)
+            .filter(([k]) => !k.startsWith('_'))
+            .map(([k, v]) => `${k.replace(/_/g, ' ')}: ${v}`)
+            .join('\n');
+          const mailBody = encodeURIComponent(lines);
+          const mailLink = errBox.querySelector('.ft-mailto-fallback');
+          if (mailLink) mailLink.href = `mailto:${TARGET_EMAIL}?subject=${mailSubject}&body=${mailBody}`;
+          errBox.classList.remove('d-none');
+        }
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnHtml;
+        }
+      }
     });
+
+    // Reset button inside Thank You card
+    if (feedbackEl) {
+      const resetBtn = feedbackEl.querySelector('.ft-reset-form-btn');
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          feedbackEl.classList.add('d-none');
+          form.classList.remove('d-none');
+        });
+      }
+    }
   };
 
   document.querySelectorAll('.ft-interactive-form').forEach((form) => {

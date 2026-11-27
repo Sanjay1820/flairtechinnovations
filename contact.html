@@ -119,7 +119,7 @@
             <h3 class="h3 mb-1">Get In Touch / Request a Quote</h3>
             <p class="small text-muted-brand mb-4">For any shipping enquiries, custom rates, or feedback, please fill out the form below.</p>
 
-            <form class="ft-interactive-form needs-validation" novalidate data-feedback="contactFeedback">
+            <form class="ft-interactive-form needs-validation" novalidate data-feedback="contactFeedback" data-subject="New Contact Enquiry">
               <div class="mb-4">
                 <label class="form-label fw-semibold small d-block mb-2">What are your needs? *</label>
                 <div class="d-flex flex-wrap gap-2">
@@ -135,44 +135,48 @@
               <div class="row g-3">
                 <div class="col-md-6">
                   <label class="form-label small fw-semibold">Full Name *</label>
-                  <input type="text" class="form-control" required placeholder="Your full name" />
+                  <input type="text" name="full_name" class="form-control" required placeholder="Your full name" />
                 </div>
                 <div class="col-md-6">
                   <label class="form-label small fw-semibold">Company Name</label>
-                  <input type="text" class="form-control" placeholder="Company or organization" />
+                  <input type="text" name="company" class="form-control" placeholder="Company or organization" />
                 </div>
                 <div class="col-md-6">
                   <label class="form-label small fw-semibold">Email Address *</label>
-                  <input type="email" class="form-control" required placeholder="name@company.com" />
+                  <input type="email" name="email" class="form-control" required placeholder="name@company.com" />
                 </div>
                 <div class="col-md-6">
                   <label class="form-label small fw-semibold">Phone Number *</label>
-                  <input type="tel" class="form-control" required placeholder="+1 (___) ___-____" />
+                  <input type="tel" name="phone" class="form-control" required placeholder="+1 (___) ___-____" />
                 </div>
                 <div class="col-md-6">
                   <label class="form-label small fw-semibold">Origin / Pickup Location</label>
-                  <input type="text" class="form-control" placeholder="City, Province/State" />
+                  <input type="text" name="origin" class="form-control" placeholder="City, Province/State" />
                 </div>
                 <div class="col-md-6">
                   <label class="form-label small fw-semibold">Destination Location</label>
-                  <input type="text" class="form-control" placeholder="City, Province/State" />
+                  <input type="text" name="destination" class="form-control" placeholder="City, Province/State" />
                 </div>
                 <div class="col-12">
                   <label class="form-label small fw-semibold d-block mb-2">Preferred Support Channel</label>
                   <div class="d-flex gap-4">
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="supportMode" id="supEmail" checked />
+                      <input class="form-check-input" type="radio" name="support_channel" value="Email Support" id="supEmail" checked />
                       <label class="form-check-label small" for="supEmail">Email Support</label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="supportMode" id="supPhone" />
+                      <input class="form-check-input" type="radio" name="support_channel" value="Call Phone Support" id="supPhone" />
                       <label class="form-check-label small" for="supPhone">Call Phone Support</label>
                     </div>
                   </div>
                 </div>
                 <div class="col-12">
                   <label class="form-label small fw-semibold">Message / Shipment Requirements *</label>
-                  <textarea class="form-control" rows="4" required placeholder="Share commodity details, pallet count, timeline, or special equipment needs..."></textarea>
+                  <textarea name="message" class="form-control" rows="4" required placeholder="Share commodity details, pallet count, timeline, or special equipment needs..."></textarea>
+                </div>
+                <div class="col-12 ft-form-error alert alert-warning d-none small mb-0 rounded-3">
+                  Could not reach the mail server automatically. Click to send via your email app:
+                  <a href="mailto:info@flairtechinnovations.com" class="ft-mailto-fallback fw-bold ms-1">Open Email App →</a>
                 </div>
                 <div class="col-12 d-grid mt-2">
                   <button type="submit" class="btn btn-ft-primary btn-lg justify-content-center">
@@ -182,9 +186,15 @@
               </div>
             </form>
 
-            <div id="contactFeedback" class="alert alert-success mt-3 mb-0 d-none rounded-3">
-              <strong><i class="bi bi-check-circle-fill me-1"></i> Enquiry Submitted Successfully!</strong>
-              Reference <span class="font-mono fw-bold ref-code"></span>. Our dispatch team will respond via your preferred channel shortly.
+            <div id="contactFeedback" class="d-none text-center py-4 px-2">
+              <div class="mx-auto mb-3 d-inline-flex align-items-center justify-content-center rounded-circle bg-mint-tint text-emerald-brand" style="width:72px;height:72px;font-size:2.2rem;border:2px solid var(--ft-emerald);">
+                <i class="bi bi-check-lg"></i>
+              </div>
+              <h4 class="text-forest mb-2">Thank You! Your Enquiry Is Sent.</h4>
+              <p class="small text-muted-brand mb-3">
+                Your enquiry has been delivered to <strong class="sent-to-email text-forest">info@flairtechinnovations.com</strong>. Reference: <span class="font-mono fw-bold text-forest ref-code"></span>.
+              </p>
+              <button type="button" class="btn btn-ft-outline btn-sm ft-reset-form-btn">Send Another Enquiry</button>
             </div>
           </div>
         </div>
