@@ -1071,3 +1071,183 @@ a:hover {
     padding: 1.75rem;
   }
 }
+
+/* ==========================================================================
+   Floating Speed-Dial Action Button (WhatsApp, Call, Email)
+   ========================================================================== */
+.ft-fab-wrapper {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 1080;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.ft-fab-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  pointer-events: none;
+  margin-bottom: 4px;
+}
+
+.ft-fab-wrapper.open .ft-fab-menu {
+  pointer-events: auto;
+}
+
+.ft-fab-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(18px) scale(0.86);
+  transition: opacity 0.28s ease, transform 0.34s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-decoration: none;
+}
+
+.ft-fab-wrapper.open .ft-fab-item {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.ft-fab-wrapper.open .ft-fab-item:nth-child(3) { transition-delay: 0.04s; }
+.ft-fab-wrapper.open .ft-fab-item:nth-child(2) { transition-delay: 0.09s; }
+.ft-fab-wrapper.open .ft-fab-item:nth-child(1) { transition-delay: 0.14s; }
+
+.ft-fab-label {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(10px);
+  color: var(--ft-forest-dark);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.84rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--ft-border);
+  box-shadow: 0 8px 22px rgba(4, 36, 17, 0.14);
+  white-space: nowrap;
+  transition: var(--ft-transition);
+}
+
+.ft-fab-item:hover .ft-fab-label {
+  transform: translateX(-3px);
+  border-color: var(--ft-emerald);
+  color: var(--ft-emerald);
+}
+
+.ft-fab-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: #ffffff;
+  box-shadow: 0 10px 24px rgba(4, 36, 17, 0.24);
+  transition: transform 0.24s ease, box-shadow 0.24s ease;
+}
+
+.ft-fab-item:hover .ft-fab-icon {
+  transform: scale(1.09);
+}
+
+.ft-fab-icon.whatsapp {
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+}
+.ft-fab-icon.call {
+  background: linear-gradient(135deg, var(--ft-forest) 0%, var(--ft-forest-dark) 100%);
+}
+.ft-fab-icon.email {
+  background: linear-gradient(135deg, var(--ft-emerald-bright) 0%, var(--ft-emerald) 100%);
+}
+
+.ft-fab-trigger {
+  position: relative;
+  height: 58px;
+  min-width: 58px;
+  padding: 0 1.2rem;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.24);
+  background: linear-gradient(135deg, var(--ft-emerald) 0%, var(--ft-forest) 100%);
+  color: #ffffff;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.92rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  cursor: pointer;
+  box-shadow: 0 14px 32px rgba(0, 60, 24, 0.34);
+  transition: var(--ft-transition);
+}
+
+.ft-fab-trigger::before {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: 999px;
+  border: 2px solid rgba(0, 176, 44, 0.45);
+  animation: ftFabPulse 2.4s infinite ease-out;
+  pointer-events: none;
+}
+
+.ft-fab-wrapper.open .ft-fab-trigger::before {
+  animation: none;
+  opacity: 0;
+}
+
+.ft-fab-trigger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 36px rgba(0, 148, 36, 0.42);
+}
+
+.ft-fab-trigger .fab-icon-open,
+.ft-fab-trigger .fab-icon-close {
+  font-size: 1.35rem;
+  line-height: 1;
+  transition: transform 0.25s ease;
+}
+
+.ft-fab-trigger .fab-icon-close {
+  display: none;
+}
+
+.ft-fab-wrapper.open .ft-fab-trigger {
+  width: 58px;
+  padding: 0;
+  background: var(--ft-forest-dark);
+}
+.ft-fab-wrapper.open .ft-fab-trigger .fab-icon-open,
+.ft-fab-wrapper.open .ft-fab-trigger .fab-trigger-text {
+  display: none;
+}
+.ft-fab-wrapper.open .ft-fab-trigger .fab-icon-close {
+  display: inline-flex;
+  transform: rotate(90deg);
+}
+
+@keyframes ftFabPulse {
+  0% { transform: scale(0.96); opacity: 0.8; }
+  70% { transform: scale(1.14); opacity: 0; }
+  100% { transform: scale(1.14); opacity: 0; }
+}
+
+@media (max-width: 575.98px) {
+  .ft-fab-wrapper {
+    right: 16px;
+    bottom: 16px;
+  }
+  .ft-fab-trigger {
+    padding: 0 1rem;
+    height: 52px;
+  }
+  .ft-fab-trigger .fab-trigger-text {
+    font-size: 0.84rem;
+  }
+}

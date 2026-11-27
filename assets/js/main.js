@@ -294,4 +294,60 @@ document.addEventListener('DOMContentLoaded', () => {
       if (slideCounter) slideCounter.textContent = `0${e.to + 1} / 04`;
     });
   }
+
+  // 11. Floating Speed-Dial Contact Widget (WhatsApp, Call, Email) across all pages
+  const initFloatingContactFab = () => {
+    if (document.getElementById('ftFabWrapper')) return;
+    const waText = encodeURIComponent('Hello Flairtech Innovations, I would like to request a quote / inquiry.');
+    const wrapper = document.createElement('div');
+    wrapper.id = 'ftFabWrapper';
+    wrapper.className = 'ft-fab-wrapper';
+    wrapper.innerHTML = `
+      <div class="ft-fab-menu" role="menu" aria-label="Quick Contact Options">
+        <a href="mailto:info@flairtechinnovations.com?subject=Freight%20Inquiry%20-%20Flairtech%20Innovations" class="ft-fab-item" role="menuitem">
+          <span class="ft-fab-label">Email Dispatch</span>
+          <span class="ft-fab-icon email"><i class="bi bi-envelope-fill"></i></span>
+        </a>
+        <a href="tel:+12267570705" class="ft-fab-item" role="menuitem">
+          <span class="ft-fab-label">Call +1 226 757 0705</span>
+          <span class="ft-fab-icon call"><i class="bi bi-telephone-fill"></i></span>
+        </a>
+        <a href="https://wa.me/12267570705?text=${waText}" target="_blank" rel="noopener" class="ft-fab-item" role="menuitem">
+          <span class="ft-fab-label">WhatsApp Chat</span>
+          <span class="ft-fab-icon whatsapp"><i class="bi bi-whatsapp"></i></span>
+        </a>
+      </div>
+      <button type="button" id="ftFabTrigger" class="ft-fab-trigger" aria-expanded="false" aria-label="Open WhatsApp and Call Quick Connect">
+        <i class="bi bi-chat-dots-fill fab-icon-open"></i>
+        <span class="fab-trigger-text">Quick Connect</span>
+        <i class="bi bi-x-lg fab-icon-close"></i>
+      </button>
+    `;
+    document.body.appendChild(wrapper);
+
+    const trigger = document.getElementById('ftFabTrigger');
+    const toggleFab = (forceState) => {
+      const next = typeof forceState === 'boolean' ? forceState : !wrapper.classList.contains('open');
+      wrapper.classList.toggle('open', next);
+      trigger.setAttribute('aria-expanded', String(next));
+    };
+
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleFab();
+    });
+
+    document.addEventListener('click', (e) => {
+      if (wrapper.classList.contains('open') && !wrapper.contains(e.target)) {
+        toggleFab(false);
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && wrapper.classList.contains('open')) {
+        toggleFab(false);
+      }
+    });
+  };
+  initFloatingContactFab();
 });
