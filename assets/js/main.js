@@ -273,7 +273,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const params = new URLSearchParams(window.location.search);
   const serviceParam = params.get('service');
   if (serviceParam) {
-    const matchRadio = document.querySelector(`input[name="need"][value*="${serviceParam}"]`);
+    const needle = serviceParam.trim().toLowerCase();
+    const radios = Array.from(document.querySelectorAll('input[name="need"]'));
+    const matchRadio = radios.find((r) => r.value.toLowerCase().includes(needle));
     if (matchRadio) matchRadio.checked = true;
   }
 
