@@ -437,4 +437,85 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
   initBackToTop();
+
+  // 13. Auto-Sliding Stacked Testimonial Deck (front card cycles behind, next rises forward)
+  const initTestimonialDeck = () => {
+    const deck = document.getElementById('testimonialDeck');
+    if (!deck) return;
+
+    const cards = Array.from(deck.querySelectorAll('.ft-deck-card'));
+    const dots = Array.from(document.querySelectorAll('.ft-deck-dot'));
+    const counter = document.getElementById('deckCounter');
+    const prevBtn = document.getElementById('deckPrevBtn');
+    const nextBtn = document.getElementById('deckNextBtn');
+    const total = cards.length;
+    if (total < 2) return;
+
+    let activeIdx = 0;
+    let timer = null;
+    let isAnimating = false;
+
+    const applyDeckPositions = (leavingIdx = -1) => {
+      cards.forEach((card, i) => {
+        card.classList.remove('is-front', 'is-next', 'is-third', 'is-back', 'is-leaving');
+        if (i === leavingIdx) {
+          card.classList.add('is-leaving');
+          return;
+        }
+        const offset = (i - activeIdx + total) % total;
+        if (offset === 0) card.classList.add('is-front');
+        else if (offset === 1) card.classList.add('is-next');
+        else if (offset === 2) card.classList.add('is-third');
+        else card.classList.add('is-back');
+      });
+
+      dots.forEach((d, idx) => d.classList.toggle('active', idx === activeIdx));
+      if (counter) counter.textContent = `0${activeIdx + 1} / 0${total}`;
+    };
+
+    const goTo = (nextIdx) => {
+      if (isAnimating) return;
+      const target = (nextIdx + total) % total;
+      if (target === activeIdx) return;
+
+      isAnimating = true;
+      const prevIdx = activeIdx;
+      activeIdx = target;
+      applyDeckPositions(prevIdx);
+
+      setTimeout(() => {
+        applyDeckPositions(-1);
+        isAnimating = false;
+      }, 480);
+    };
+
+    const startAuto = () => {
+      stopAuto();
+      timer = setInterval(() => goTo(activeIdx + 1), 4200);
+    };
+    const stopAuto = () => {
+      if (timer) clearInterval(timer);
+      timer = null;
+    };
+
+    if (nextBtn) nextBtn.addEventListener('click', () => { goTo(activeIdx + 1); startAuto(); });
+    if (prevBtn) prevBtn.addEventListener('click', () => { goTo(activeIdx - 1); startAuto(); });
+    dots.forEach((d) => d.addEventListener('click', () => {
+      goTo(parseInt(d.dataset.deckIndex, 10));
+      startAuto();
+    }));
+    cards.forEach((c) => c.addEventListener('click', () => {
+      if (c.classList.contains('is-front')) {
+        goTo(activeIdx + 1);
+        startAuto();
+      }
+    }));
+
+    deck.addEventListener('mouseenter', stopAuto);
+    deck.addEventListener('mouseleave', startAuto);
+
+    applyDeckPositions(-1);
+    startAuto();
+  };
+  initTestimonialDeck();
 });

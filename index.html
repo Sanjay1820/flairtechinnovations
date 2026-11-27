@@ -613,87 +613,112 @@
     </div>
   </section>
 
-  <!-- Testimonials Section -->
+  <!-- Testimonials Stacked Auto-Slider Section -->
   <section id="testimonials" class="ft-section bg-surface">
     <div class="container">
-      <div class="row align-items-end mb-5 g-3 reveal">
-        <div class="col-lg-8">
-          <span class="brand-kicker mb-2"><i class="bi bi-chat-quote"></i> Testimonials</span>
-          <h2 class="display-6 mb-2">What Our Customers Say</h2>
-          <p class="text-muted-brand mb-0">More than <strong>99% customer satisfaction</strong> across 500+ active shipping partners in Canada and the U.S.</p>
-        </div>
-      </div>
+      <div class="row align-items-center g-5">
+        <div class="col-lg-5 reveal">
+          <span class="brand-kicker mb-3"><i class="bi bi-chat-quote"></i> Testimonials</span>
+          <h2 class="display-6 mb-3">What Our Customers Say</h2>
+          <p class="text-muted-brand mb-4">
+            More than <strong>99% customer satisfaction</strong> across 500+ active shipping partners in Canada and the U.S.
+          </p>
 
-      <div class="row g-4">
-        <div class="col-md-6 col-lg-3 reveal">
-          <div class="ft-quote-card">
-            <div>
-              <div class="d-flex justify-content-between align-items-center mb-2">
-                <span class="ft-quote-mark">“</span>
-                <span class="text-warning small"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></span>
-              </div>
-              <p class="small text-slate-brand">
-                "Flairtech Innovations has been our go-to logistics partner for over two years now. Their service is always prompt, and they consistently meet our deadlines, no matter how complex the shipment. We’ve never had to worry about delays or mishandling."
-              </p>
-            </div>
-            <div class="pt-3 border-top">
-              <div class="fw-bold text-forest">Heather Smith</div>
-              <div class="small text-muted-brand">Operations Director</div>
-            </div>
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <button type="button" id="deckPrevBtn" class="ft-deck-nav-btn" aria-label="Previous testimonial">
+              <i class="bi bi-arrow-left"></i>
+            </button>
+            <button type="button" id="deckNextBtn" class="ft-deck-nav-btn" aria-label="Next testimonial">
+              <i class="bi bi-arrow-right"></i>
+            </button>
+            <span id="deckCounter" class="font-mono small fw-bold text-forest ms-1">01 / 04</span>
+          </div>
+
+          <div id="deckDots" class="ft-deck-dots" aria-label="Testimonial slide indicators">
+            <button type="button" class="ft-deck-dot active" data-deck-index="0" aria-label="Testimonial 1"></button>
+            <button type="button" class="ft-deck-dot" data-deck-index="1" aria-label="Testimonial 2"></button>
+            <button type="button" class="ft-deck-dot" data-deck-index="2" aria-label="Testimonial 3"></button>
+            <button type="button" class="ft-deck-dot" data-deck-index="3" aria-label="Testimonial 4"></button>
           </div>
         </div>
 
-        <div class="col-md-6 col-lg-3 reveal">
-          <div class="ft-quote-card">
-            <div>
-              <div class="d-flex justify-content-between align-items-center mb-2">
-                <span class="ft-quote-mark">“</span>
-                <span class="text-warning small"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></span>
+        <div class="col-lg-7 reveal">
+          <div id="testimonialDeck" class="ft-testimonial-deck">
+            <article class="ft-deck-card is-front">
+              <div>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <span class="ft-quote-mark">“</span>
+                  <span class="text-warning"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></span>
+                </div>
+                <p class="fs-5 text-slate-brand mb-4" style="line-height: 1.6;">
+                  "Flairtech Innovations has been our go-to logistics partner for over two years now. Their service is always prompt, and they consistently meet our deadlines, no matter how complex the shipment. We’ve never had to worry about delays or mishandling."
+                </p>
               </div>
-              <p class="small text-slate-brand">
-                "We ship goods throughout Canada and the U.S., and Flairtech Innovations always handles our cross-border logistics smoothly. Their attention to detail and ability to handle customs processes make our business run seamlessly."
-              </p>
-            </div>
-            <div class="pt-3 border-top">
-              <div class="fw-bold text-forest">Juhani Pallasmaa</div>
-              <div class="small text-muted-brand">Distribution Partner</div>
-            </div>
-          </div>
-        </div>
+              <div class="pt-3 border-top d-flex justify-content-between align-items-center">
+                <div>
+                  <div class="fw-bold text-forest fs-5">Heather Smith</div>
+                  <div class="small text-muted-brand">Operations Director</div>
+                </div>
+                <span class="badge bg-mint-tint text-forest">Verified Partner</span>
+              </div>
+            </article>
 
-        <div class="col-md-6 col-lg-3 reveal">
-          <div class="ft-quote-card">
-            <div>
-              <div class="d-flex justify-content-between align-items-center mb-2">
-                <span class="ft-quote-mark">“</span>
-                <span class="text-warning small"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></span>
+            <article class="ft-deck-card is-next">
+              <div>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <span class="ft-quote-mark">“</span>
+                  <span class="text-warning"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></span>
+                </div>
+                <p class="fs-5 text-slate-brand mb-4" style="line-height: 1.6;">
+                  "We ship goods throughout Canada and the U.S., and Flairtech Innovations always handles our cross-border logistics smoothly. Their attention to detail and ability to handle customs processes make our business run seamlessly."
+                </p>
               </div>
-              <p class="small text-slate-brand">
-                "Flairtech Innovations provided us with excellent warehousing services that helped streamline our distribution process. Their facilities are secure and well-managed, and their team is always professional and attentive to our needs."
-              </p>
-            </div>
-            <div class="pt-3 border-top">
-              <div class="fw-bold text-forest">Rachel M.</div>
-              <div class="small text-muted-brand">Logistics Coordinator, Maple Exports Ltd.</div>
-            </div>
-          </div>
-        </div>
+              <div class="pt-3 border-top d-flex justify-content-between align-items-center">
+                <div>
+                  <div class="fw-bold text-forest fs-5">Juhani Pallasmaa</div>
+                  <div class="small text-muted-brand">Distribution Partner</div>
+                </div>
+                <span class="badge bg-mint-tint text-forest">Cross-Border Client</span>
+              </div>
+            </article>
 
-        <div class="col-md-6 col-lg-3 reveal">
-          <div class="ft-quote-card">
-            <div>
-              <div class="d-flex justify-content-between align-items-center mb-2">
-                <span class="ft-quote-mark">“</span>
-                <span class="text-warning small"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></span>
+            <article class="ft-deck-card is-third">
+              <div>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <span class="ft-quote-mark">“</span>
+                  <span class="text-warning"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></span>
+                </div>
+                <p class="fs-5 text-slate-brand mb-4" style="line-height: 1.6;">
+                  "Flairtech Innovations provided us with excellent warehousing services that helped streamline our distribution process. Their facilities are secure and well-managed, and their team is always professional and attentive to our needs."
+                </p>
               </div>
-              <p class="small text-slate-brand">
-                "Working with Flairtech Innovations has saved us both time and money. Their competitive rates and excellent customer service set them apart from other logistics companies we’ve used in the past. Their team keeps us informed every step of the way!"
-              </p>
-            </div>
-            <div class="pt-3 border-top">
-              <div class="fw-bold text-forest">David L.</div>
-              <div class="small text-muted-brand">Supply Chain Director, Northern Goods Inc.</div>
-            </div>
+              <div class="pt-3 border-top d-flex justify-content-between align-items-center">
+                <div>
+                  <div class="fw-bold text-forest fs-5">Rachel M.</div>
+                  <div class="small text-muted-brand">Logistics Coordinator, Maple Exports Ltd.</div>
+                </div>
+                <span class="badge bg-mint-tint text-forest">Warehousing Client</span>
+              </div>
+            </article>
+
+            <article class="ft-deck-card is-back">
+              <div>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <span class="ft-quote-mark">“</span>
+                  <span class="text-warning"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></span>
+                </div>
+                <p class="fs-5 text-slate-brand mb-4" style="line-height: 1.6;">
+                  "Working with Flairtech Innovations has saved us both time and money. Their competitive rates and excellent customer service set them apart from other logistics companies we’ve used in the past. Their team keeps us informed every step of the way!"
+                </p>
+              </div>
+              <div class="pt-3 border-top d-flex justify-content-between align-items-center">
+                <div>
+                  <div class="fw-bold text-forest fs-5">David L.</div>
+                  <div class="small text-muted-brand">Supply Chain Director, Northern Goods Inc.</div>
+                </div>
+                <span class="badge bg-mint-tint text-forest">Supply Chain Partner</span>
+              </div>
+            </article>
           </div>
         </div>
       </div>
