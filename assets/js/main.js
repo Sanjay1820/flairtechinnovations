@@ -13,8 +13,44 @@ document.addEventListener('DOMContentLoaded', () => {
     onScroll();
   }
 
-  // 2. Scroll reveal observer
-  const revealEls = document.querySelectorAll('.reveal');
+  // 2. Smooth Bottom-to-Top Staggered Scroll Reveal across all pages
+  const heroAnimateSelectors = [
+    '.ft-split-hero-left > *',
+    '.ft-page-banner .container > *'
+  ];
+  heroAnimateSelectors.forEach((sel) => {
+    document.querySelectorAll(sel).forEach((el, idx) => {
+      el.classList.add('ft-reveal-up');
+      el.style.setProperty('--ft-reveal-delay', `${idx * 95}ms`);
+    });
+  });
+
+  // Automatically attach bottom-to-top reveal & stagger to section content, cards, lists, and footer
+  const sectionTargets = document.querySelectorAll(
+    'section .brand-kicker, section h2, section h3, section .col-lg-5 > p, section .col-lg-6 > p, section .col-lg-7 > p, section .col-lg-8 > p, section .text-center > p, section .ft-card, section .ft-service-card, section .ft-quote-card, section .ft-circle-card, section .ft-trust-col, section .ft-form-card, section .ft-cta-banner, section .ft-network-panel, section .accordion-item, section .ft-check-list li, footer .row > div'
+  );
+  sectionTargets.forEach((el) => {
+    if (!el.classList.contains('reveal') && !el.classList.contains('ft-reveal-up')) {
+      el.classList.add('ft-reveal-up');
+    }
+  });
+
+  // Stagger sibling items inside rows, lists, and grids cleanly
+  document.querySelectorAll('.row, .ft-check-list, .accordion').forEach((group) => {
+    const children = Array.from(group.children);
+    let step = 0;
+    children.forEach((child) => {
+      const target = child.matches('.reveal, .ft-reveal-up')
+        ? child
+        : child.querySelector('.reveal, .ft-reveal-up');
+      if (target) {
+        target.style.setProperty('--ft-reveal-delay', `${Math.min(step, 5) * 85}ms`);
+        step += 1;
+      }
+    });
+  });
+
+  const revealEls = document.querySelectorAll('.reveal, .ft-reveal-up');
   if ('IntersectionObserver' in window && revealEls.length) {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -25,9 +61,17 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         });
       },
-      { threshold: 0.12, rootMargin: '0px 0px -30px 0px' }
+      { threshold: 0.08, rootMargin: '0px 0px -36px 0px' }
     );
-    revealEls.forEach((el) => observer.observe(el));
+
+    revealEls.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.92) {
+        requestAnimationFrame(() => el.classList.add('visible'));
+      } else {
+        observer.observe(el);
+      }
+    });
   } else {
     revealEls.forEach((el) => el.classList.add('visible'));
   }

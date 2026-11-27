@@ -1076,15 +1076,42 @@ a:hover {
   font-size: 0.87rem;
 }
 
-/* Reveal Animations */
-.reveal {
+/* Bottom-to-Top Scroll Reveal Animations */
+.reveal,
+.ft-reveal-up {
   opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translate3d(0, 42px, 0);
+  transition:
+    opacity 0.78s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.78s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--ft-reveal-delay, 0ms);
+  will-change: opacity, transform;
 }
-.reveal.visible {
+
+.reveal.visible,
+.ft-reveal-up.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0);
+}
+
+/* Preserve hover lift on interactive cards after reveal */
+.ft-card.ft-reveal-up.visible:hover,
+.ft-circle-card.ft-reveal-up.visible:hover {
+  transform: translate3d(0, -6px, 0);
+  transition-delay: 0ms;
+}
+.ft-service-card.ft-reveal-up.visible:hover {
+  transform: translate3d(0, -6px, 0);
+  transition-delay: 0ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .ft-reveal-up {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
 
 /* Responsive tweaks */
