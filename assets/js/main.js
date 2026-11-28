@@ -207,6 +207,11 @@ document.addEventListener('DOMContentLoaded', () => {
         payload._replyto = payload.email;
       }
 
+      const urlSvc = new URLSearchParams(window.location.search).get('service');
+      if (urlSvc && !payload.service) {
+        payload.requested_service = urlSvc;
+      }
+
       if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Sending Inquiry...';
@@ -551,6 +556,16 @@ document.addEventListener('DOMContentLoaded', () => {
       const isOpen = btn.getAttribute('aria-expanded') === 'true';
       btn.setAttribute('aria-expanded', String(!isOpen));
       submenu.classList.toggle('show', !isOpen);
+    });
+  });
+
+  // 16. Navbar "Our Services": on desktop (>= 992px), hover opens dropdown and direct click opens services.html; on mobile, tap toggles dropdown
+  document.querySelectorAll('.ft-navbar .nav-item.dropdown > a.dropdown-toggle').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      if (window.innerWidth >= 992) {
+        e.preventDefault();
+        window.location.href = link.getAttribute('href');
+      }
     });
   });
 });
