@@ -261,7 +261,7 @@ a:hover {
   border-radius: 0;
   position: relative;
 }
-.ft-navbar .nav-link::after {
+.ft-navbar .nav-link:not(.dropdown-toggle)::after {
   content: '';
   position: absolute;
   left: 0.9rem;
@@ -278,9 +278,76 @@ a:hover {
   color: var(--ft-forest);
   background: transparent;
 }
-.ft-navbar .nav-link:hover::after,
-.ft-navbar .nav-link.active::after {
+.ft-navbar .nav-link:not(.dropdown-toggle):hover::after,
+.ft-navbar .nav-link:not(.dropdown-toggle).active::after {
   transform: scaleX(1);
+}
+
+/* Our Services Navbar Dropdown */
+.ft-navbar .dropdown-toggle::after {
+  margin-left: 0.45rem;
+  vertical-align: 0.14em;
+  transition: transform 0.2s ease;
+}
+.ft-navbar .nav-item.dropdown:hover .dropdown-toggle::after,
+.ft-navbar .dropdown-toggle.show::after {
+  transform: rotate(180deg);
+}
+.ft-navbar .nav-item.dropdown .nav-link.active {
+  color: var(--ft-emerald);
+}
+.ft-dropdown-menu {
+  border: 1px solid var(--ft-border);
+  border-radius: 16px;
+  padding: 0.55rem;
+  min-width: 270px;
+  box-shadow: var(--ft-shadow-lg);
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(14px);
+  margin-top: 0.35rem;
+}
+.ft-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 12px;
+  color: var(--ft-ink);
+  transition: var(--ft-transition);
+}
+.ft-dropdown-item:hover,
+.ft-dropdown-item.active {
+  background: var(--ft-mint-tint);
+  color: var(--ft-forest);
+}
+.ft-dropdown-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--ft-surface);
+  color: var(--ft-emerald);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+  transition: var(--ft-transition);
+}
+.ft-dropdown-item:hover .ft-dropdown-icon,
+.ft-dropdown-item.active .ft-dropdown-icon {
+  background: var(--ft-emerald);
+  color: #ffffff;
+}
+@media (min-width: 992px) {
+  .ft-navbar .nav-item.dropdown:hover > .ft-dropdown-menu {
+    display: block;
+    margin-top: 0;
+    animation: ftDropdownFade 0.2s ease forwards;
+  }
+}
+@keyframes ftDropdownFade {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Multi-Division Diagonal Split Hero Banner (Reference Match + Auto-Slide) */
