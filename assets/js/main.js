@@ -542,4 +542,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
   initContactMapSwitcher();
+
+  // 15. Footer Quick Links "Our Services" Dropdown Toggle across all pages
+  document.querySelectorAll('.ft-footer-dropdown-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const submenu = btn.nextElementSibling;
+      if (!submenu) return;
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!isOpen));
+      submenu.classList.toggle('show', !isOpen);
+    });
+  });
 });
